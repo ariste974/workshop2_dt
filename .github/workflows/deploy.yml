@@ -3,24 +3,22 @@ name: Deploy to IPFS with Pinata
 on:
   push:
     branches:
-      
-main  # Triggers on every push to the main branch
+      - main  # Triggers on every push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      
-name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       
-name: Upload to IPFS via Pinata
-      uses: anantaramdas/ipfs-pinata-deploy-action@v1.3.2
-      with:
-        pin-name: "my-ipfs-website"
-        path: "./"
-        pinata-api-key: ${{ secrets.PINATA_API_KEY }}
-        pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
-        remove-old: true
+      - name: Upload to IPFS via Pinata
+        uses: anantaramdas/ipfs-pinata-deploy-action@v1.3.2
+        with:
+          pin-name: "my-ipfs-website"
+          path: "./"
+          pinata-api-key: ${{ secrets.PINATA_API_KEY }}
+          pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY }}
+          remove-old: true
